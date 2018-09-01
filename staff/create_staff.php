@@ -10,7 +10,7 @@ $db = $connection->getConnection();
 // pass connection to objects
 $staff = new Staff($db);
 
-$page_title = "Create Staff";
+$page_title = "Register Staff Member";
 require_once "../header.php";
 
 // content will be here
@@ -49,7 +49,7 @@ if($_POST){
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" METHOD="post" enctype="multipart/form-data">
 
-        <table class="ta ble table-hover table-responsive" style="padding-left: 250px">
+        <table class="table table-hover table-responsive" style="padding-left: 250px">
             <tr>
                 <td> Last Name</td>
                 <td><input type="text" name="last_name" class="form-control"/></td>
@@ -95,7 +95,7 @@ if($_POST){
             <tr>
                 <td> </td>
                 <td>
-                    <input type="submit"  value="Register" class="btn btn-primary"/>
+                    <input type="submit"  value="Register" class="btn btn-primary fa-pull-right"/>
                 </td>
             </tr>
 

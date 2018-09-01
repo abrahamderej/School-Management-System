@@ -29,5 +29,5 @@
     //  it controls how the staff list will be rendered
     include_once "read_template.php";
 
-include_once "../footer.php";
+    include_once "../footer.php";
 ?>

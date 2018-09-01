@@ -100,13 +100,13 @@ class staff
 
             //error message is empty
             $file_upload_error_messages="";
-            // make sure that file is a real image
+            // make sure that file is a real img
             $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
             if($check !== false){
-                // its image
+                // its img
 
             }   else{
-                $file_upload_error_messages .=" <div> submitted file is not an image. </div>";
+                $file_upload_error_messages .=" <div> submitted file is not an img. </div>";
             }
 
             // make sure certain file types are allowed
@@ -120,7 +120,7 @@ class staff
             }
             // make sure submitted file is not too large. can;t be larger than 1MB
             if($_FILES['profile_image']['size'] > (1024000)){
-                $file_upload_error_messages .=" <div> image size must be less than 1 MB. </div>";
+                $file_upload_error_messages .=" <div> img size must be less than 1 MB. </div>";
             }
 
             // make sure upload folder exists
@@ -288,7 +288,7 @@ class staff
         $stmt -> bindParam(":mobile", $this->mobile);
         $stmt -> bindParam(":telephone", $this->telephone);
         $stmt -> bindParam(":profile_image", $this->profile_image);
-        $stmt-> bindParam(":staff_id", $this->staff_id);
+        $stmt -> bindParam(":staff_id", $this->staff_id);
 
         // specify when this record was inserted to the database
         // Execute the query

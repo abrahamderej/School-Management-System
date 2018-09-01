@@ -24,7 +24,7 @@ $page_title = "Detail about users";
 include_once "../header.php";
 
     echo "<div class='right-button-margin'>
-           <a href='staff/view_staff.php' class='btn btn-primary fa-pull-right'> Read Staff</a>
+           <a href='staff/view_staff.php' class='btn btn-primary fa-pull-right'> <span class='fa fa-list'></span> Read Staff</a>
            </div>";
     ?>
 

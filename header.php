@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="x-ua-compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <base href="http://localhost/SchoolMngtOOP/" />
+    <base href="http://localhost/school-management-system/" />
     <title><?php echo $page_title; ?></title>
 
     <link rel="stylesheet" type="text/css" href="common/css/bootstrap.min.css"/>
@@ -24,11 +24,13 @@
     <div class="sidenav">
         <a href="staff/view_staff.php">Staff</a>
         <a href="staff/view_staff.php">Student</a>
-        <a href="staff/view_staff.php">Add Course</a>
+        <a href="course/course_list.php">Course</a>
+        <img src="common/img/place_holder.jpg" height="130" width="130" style='margin-left: 15px;margin-top: 20px;' />
+        <h3 style="text-align: center; color: lightcyan">welcome</h3>
     </div>
     <?php
     echo "<div class='page-header' style='text-align: center; margin-top: 80px'>
-        <h2 >{$page_title}</h2>
+        <h5 >{$page_title}</h5>
            </div>"
     ;?>
 

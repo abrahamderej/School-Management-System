@@ -6,6 +6,20 @@
     margin: 0 0 1em 0;
     overflow: hidden;
 }
+.modal-body{
+    padding: 20px 20px 0px 20px !important;
+    text-align: center !important;
+}
+
+.modal-footer{
+    text-align: center !important;
+}
+table th{
+    width:auto !important;
+}
+.error{
+    color: #ff0000;
+}
 
 *{
     box-sizing: border-box;

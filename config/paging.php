@@ -5,11 +5,11 @@
  * Date: 6/16/2018
  * Time: 11:17 PM
  */
-    echo "<ul class=\"pagination\">";
+    echo "<ul class='pagination fa-pull-right' >";
     // first page button will be here
     if ($page>1){
         echo "<li><a href='{$page_url}' title='Go to the first page'>";
-            echo "FIRST Page";
+            echo "<span style='margin: 0 .5em;'> << </span>";
         echo "</a></li>";
     }
     // find out total page
@@ -26,11 +26,13 @@
 
             //current page
             if($x == $page){
-                echo "<li class='active' ><a href=\"#\">$x<span class=\"sr-only\">(current)</span></a></li>";
+                echo "<li class='active' style='margin: 5px' ><a href=''> $x<span class='sr-only'>(current)</span></a></li>";
+                echo " || ";
             }
             // not current page
             else{
-                echo "<li><a href='{$page_url}page=$x'>$x</a></li>";
+                echo "<li  style='margin: 5px' ><a href='{$page_url}page=$x'>$x </a></li>";
+                echo " || ";
             }
         }
     }
@@ -38,8 +40,9 @@
 
     if($page < $total_pages){
         echo "<li><a href='" .$page_url. " page={$total_pages}' title='Last page is {$total_pages}.'>";
-            echo "Last Page";
+            echo "<span style='margin: 0 .5em;' > >> </span>";
         echo "</a></li>";
     }
     echo "</ul>";
 ?>
+

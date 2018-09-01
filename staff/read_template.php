@@ -7,8 +7,8 @@ echo "<form role='search' action='staff/search_staff.php'>
         <div class='input-group  fa-pull-left '>";
         $search_value=isset($search_term) ? "value='{$search_term}'" : "";
         echo "<input type='text' class='form-control' placeholder='Type last name or first name...' name='s' id='srch-term' required {$search_value} /> 
-            <div class='input-group-btn'>
-            <button class='btn btn-primary fa-search'  type='submit'></button>
+            <div class='input-group-btn' >
+            <button class='btn btn-primary' type='submit'> <i class='fa fa-search-plus'></i> </button>
             </div>
         </div>
     </form>
@@ -16,13 +16,14 @@ echo "<form role='search' action='staff/search_staff.php'>
  echo "<div class='col-md-2'> 
         <div class='right-button-margin'>
         <a href='staff/create_staff.php' class='btn btn-primary fa-pull-left'>
-        <span class='glyphicon glyphicon-plus'></span> Register Staff </a></div>
+        <span class='fa fa-plus'></span> Register</a></div>
         </div>
 </div>";
 
 
 // check if more than 0 records found
     if($total_rows >0) {
+
         echo "<table class='table table-hover table-responsive' style='padding-left: 150px;'>";
         echo "<tr>";
         echo "<th> Last Name </th>";
@@ -31,8 +32,7 @@ echo "<form role='search' action='staff/search_staff.php'>
         echo "<th> Gender </th>";
         echo "<th> Job Title </th>";
         echo "<th> Email </th>";
-        echo "<th> Mobile </th>";
-        echo "<th> Telephone </th>";
+        echo "<th> phone </th>";
         echo "<th> Action </th>";
         echo "</tr>";
 
@@ -50,11 +50,10 @@ echo "<form role='search' action='staff/search_staff.php'>
             echo "<td> {$job_title} </td>";
             echo "<td> {$email} </td>";
             echo "<td> {$mobile} </td>";
-            echo "<td> {$telephone} </td>";
             echo "<td>";
-            echo "<a href='staff/detail_staff.php?staff_id={$staff_id}' class='btn btn-primary left-margin'><span class='glyphicon glyphicon-list'></span> Read</a>";
-            echo "<a href='staff/update_staff.php?staff_id={$staff_id}' class='btn btn-info left-margin'> <span class='glyphicon glyphicon-edit'></span> Edit</a>";
-            echo "<a delete-staff_id='{$staff_id}'  class='btn btn-danger delete-object'> <span class='glyphicon glyphicon-remove'></span> Delete</a>";
+            echo "<a href='staff/detail_staff.php?staff_id={$staff_id}' class='btn btn-primary left-margin'><span class='fas fa-list'></span> Read</a>";
+            echo "<a href='staff/update_staff.php?staff_id={$staff_id}' class='btn btn-info left-margin'> <span class='fas fa-edit'></span> Edit</a>";
+            echo "<a delete-id='{$staff_id}'  class='btn btn-danger delete-object'> <span class='fa fa-trash-alt'></span> Delete</a>";
             echo "</td>";
             echo "</tr>";
         }
