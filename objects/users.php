@@ -10,7 +10,6 @@ class users{
     private $conn;
     private $table_name = "users";
 
-    // objects properties
     public $user_id;
     public $first_name;
     public $middle_name;
@@ -28,49 +27,6 @@ class users{
     public function __construct($db)
     {
         $this->conn = $db;
-    }
-
-    public function login(){
-        $query = "select user_id, password from ".$this->table_name." where user_name= ?";
-        $stmt = $this->conn->prepare($query);
-        $this->user_name = htmlspecialchars(strip_tags($this->user_name));
-        $stmt-> bindParam(1, $this->user_name);
-        $stmt->execute();
-        return $stmt;
-    }
-
-    // read all user records
-    function readAll($from_record_num, $records_per_page){
-
-        // query to read all user records, with limit clause for pagination
-        $query = "SELECT
-				user_id, first_name, middle_name, last_name, user_name,
-				email, address, access_level,access_code, created
-			FROM " . $this->table_name . "
-			ORDER BY user_id DESC
-			LIMIT ?, ?";
-
-        // prepare query statement
-        $stmt = $this->conn->prepare( $query );
-
-        // bind limit clause variables
-        $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
-        $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
-
-        // execute query
-        $stmt->execute();
-
-        // return values
-        return $stmt;
-    }
-
-    public function countAll(){
-        $query ="select user_login_id from " . $this->table_name . " ";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-        $num = $stmt->rowCount();
-        return $num;
     }
 
     // check if given email exist in the database
@@ -238,9 +194,74 @@ class users{
         return false;
     }
 
+    function  readName(){
+        $query =" select first_name from " . $this->table_name . "where  user_id = ? limit 0,1";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->user_id);
+        $stmt->execute();
+
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+        $this->first_name = $row['first_name'];
+    }
+    function readOne(){
+        $query = "Select first_name, last_name, middle_name, user_name, email, address
+        from 
+        " .$this->table_name ."
+        where user_id = ? 
+        limit 0, 1";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt-> bindParam(1,$this->user_id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->first_name = $row['first_name'];
+        $this->middle_name = $row['middle_name'];
+        $this->last_name = $row['last_name'];
+        $this->user_name = $row['user_name'];
+        $this->email = $row['email'];
+        $this->address = $row['address'];
+
+    }
+    // read all user records
+    function readAll($from_record_num, $records_per_page){
+
+        // query to read all user records, with limit clause for pagination
+        $query = "SELECT
+				user_id, first_name, middle_name, last_name, user_name,
+				email, address, access_level,access_code, created
+			FROM " . $this->table_name . "
+			ORDER BY user_id DESC
+			LIMIT ?, ?";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare( $query );
+
+        // bind limit clause variables
+        $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
+        $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
+
+        // execute query
+        $stmt->execute();
+
+        // return values
+        return $stmt;
+    }
+
+    public function countAll(){
+        $query ="select user_login_id from " . $this->table_name . " ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $num = $stmt->rowCount();
+        return $num;
+    }
     // create new user record
     function create(){
 
+        //$this->conn->beginTransaction();
         // to get time stamp for 'created' field
         $this->created=date('Y-m-d H:i:s');
 
@@ -256,7 +277,6 @@ class users{
 
         // prepare the query
         $stmt = $this->conn->prepare($query);
-
         // sanitize
         $this->first_name=htmlspecialchars(strip_tags($this->first_name));
         $this->middle_name=htmlspecialchars(strip_tags($this->middle_name));
@@ -285,15 +305,16 @@ class users{
         $stmt->bindParam(':access_code', $this->access_code);
         $stmt->bindParam(':status', $this->status);
         $stmt->bindParam(':created', $this->created);
-
-        // execute the query, also check if query was successful
         if($stmt->execute()){
+            $_SESSION['new_user_id']=$this->conn->lastInsertId();
             return true;
         }else{
             $this->showError($stmt);
             return false;
         }
-
+    }
+    public function  userID(){
+        return  $_SESSION['new_user_id'];
     }
 
     public function showError($stmt){

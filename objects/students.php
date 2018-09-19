@@ -6,20 +6,20 @@
  * Time: 9:57 AM
  */
 
-class staffs
+class students
 {
- // database connection
+    // database connection
     private $conn;
-    private $table_name = "staffs";
+    private $table_name = "students";
 
     // objects properties
-    public $staff_id;
+    public $student_id;
     public $user_id;
     public $gender;
     public $profile_image;
-    public $job_title;
+    public $birth_date;
     public $mobile;
-    public $telephone;
+    public $date_of_join;
 
 
     public function __construct($db)
@@ -28,7 +28,7 @@ class staffs
     }
     // used by select drop down list ---you have get user.user_id == staff.user_id---
     function read(){
-                // select all data
+        // select all data
         $query = "select staff_id, first_name
                 from
                 ". $this ->table_name. "
@@ -211,25 +211,28 @@ class staffs
     function create(){
 
         $query = "Insert INTO " .$this->table_name ." 
-                  SET  user_id =:user_id, gender=:gender, profile_image=:profile_image, job_title=:job_title,
-                       mobile=:mobile, telephone=:telephone ";
+                  SET  student_id=:student_id, user_id =:user_id, gender =:gender, profile_image =:profile_image, 
+                  birth_date =:birth_date, mobile =:mobile, date_of_join =:date_of_join ";
 
         //prepare query for execution ,
         $stmt= $this->conn-> prepare($query);
         // posted values
+        $this->student_id = htmlspecialchars(strip_tags($this->student_id));
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
-        $this->job_title = htmlspecialchars(strip_tags($this->job_title));
+        $this->birth_date = htmlspecialchars(strip_tags($this->birth_date));
         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
-        $this->telephone = htmlspecialchars(strip_tags($this->telephone));
+        $this->date_of_join = htmlspecialchars(strip_tags($this->date_of_join));
         $this->profile_image = htmlspecialchars(strip_tags($this->profile_image));
 
         // bind the parameters
+
+        $stmt -> bindParam(":student_id", $this->student_id);
         $stmt -> bindParam(":user_id", $this->user_id);
         $stmt -> bindParam(":gender", $this->gender);
-        $stmt -> bindParam(":job_title", $this->job_title);
+        $stmt -> bindParam(":birth_date", $this->birth_date);
         $stmt -> bindParam(":mobile", $this->mobile);
-        $stmt -> bindParam(":telephone", $this->telephone);
+        $stmt -> bindParam(":date_of_join", $this->date_of_join);
         $stmt -> bindParam(":profile_image", $this->profile_image);
 
         // specify when this record was inserted to the database

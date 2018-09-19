@@ -1,47 +1,36 @@
 <!-- navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<nav  class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
+        <!-- to enable navigation dropdown when viewed in mobile device -->
+        <a class="navbar-brand" href="<?php echo $home_url; ?>admin/index.php">SMS</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
 
-        <div class="navbar-header">
-            <!-- to enable navigation dropdown when viewed in mobile device -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Change "Site Admin" to your site name -->
-            <a class="navbar-brand" href="<?php echo $home_url; ?>admin/index.php">Admin</a>
-        </div>
-
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-
-
-                <!-- highlight for order related pages -->
-                <li <?php echo $page_title=="Admin Index" ? "class='active'" : ""; ?>>
-                    <a href="<?php echo $home_url; ?>admin/index.php">Home</a>
+                <li <?php echo $page_title=="Index" ? "class='nav-item active'" : ""; ?>>
+                    <a class="nav-link left-margin" href="<?php echo $home_url; ?>admin/index.php">Home</a>
                 </li>
 
-                <!-- highlight for user related pages -->
                 <li <?php
-                echo $page_title=="Users" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>user/user_list.php">Users</a>
+                echo $page_title=="Users" ? "class='nav-item active'" : ""; ?> >
+                    <a class="nav-link left-margin" href="<?php echo $home_url; ?>user/user_list.php">Users</a>
                 </li>
-            </ul>
 
-            <!-- options in the upper right corner of the page -->
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <?php echo $_SESSION['first_name']; ?>
-                        <span class="caret"></span>
+                <li <?php echo $page_title=="Register" ? "class='nav-item active'" : ""; ?> >
+                    <a class="nav-link left-margin" href="<?php echo $home_url; ?>admin/register.php">
+                        <span class="fa fa-check"></span> Register
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <!-- log out user -->
-                        <li><a href="<?php echo $home_url; ?>logout.php">Logout</a></li>
+                </li>
+                <li>
+                <li>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="navbarDropdown" aria-expanded="false" aria-haspopup="true">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                        <?php echo $_SESSION['first_name']; ?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="<?php echo $home_url; ?>logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,5 +38,5 @@
         </div><!--/.nav-collapse -->
 
     </div>
-</div>
+</nav>
 <!-- /navbar -->

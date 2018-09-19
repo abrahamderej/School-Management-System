@@ -47,23 +47,23 @@ if($_POST){
             $send_to_email=$_POST['email'];
 
             if($utils->sendEmailViaPhpMail($send_to_email, $subject, $body)){
-                echo "<div class='alert alert-info'>
+                echo "<div class='alert alert-info margin-top-40'>
 							Password reset link was sent to your email.
 							Click that link to reset your password.
 						</div>";
             }
 
             // message if unable to send email for password reset link
-            else{ echo "<div class='alert alert-danger'>ERROR: Unable to send reset link.</div>"; }
+            else{ echo "<div class='alert alert-danger margin-top-40'>ERROR: Unable to send reset link.</div>"; }
         }
 
         // message if unable to update access code
-        else{ echo "<div class='alert alert-danger'>ERROR: Unable to update access code.</div>"; }
+        else{ echo "<div class='alert alert-danger margin-top-40'>ERROR: Unable to update access code.</div>"; }
 
     }
 
     // message if email does not exist
-    else{ echo "<div class='alert alert-danger'>Your email cannot be found.</div>"; }
+    else{ echo "<div class='alert alert-danger margin-top-40'>Your email cannot be found.</div>"; }
 
     echo "</div>";
 }
@@ -74,15 +74,13 @@ echo "<div class='col-md-4'></div>";
 echo "<div class='col-md-4'>";
 
 echo "<div class='account-wall'>
-		<div id='my-tab-content' class='tab-content'>
-			<div class='tab-pane active' id='login'>
-				<img class='profile-img' src='common/img/place_holder.jpg'>
-				<form class='form-signin' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "' method='post'>
-					<input type='email' name='email' class='form-control' placeholder='Your email' required autofocus>
-					<input type='submit' class='btn btn-lg btn-primary btn-block' value='Send Reset Link' style='margin-top:1em;' />
-				</form>
-			</div>
-		</div>
+        <div class='tab-pane active' id='login'>
+            <img class='profile-img' src='common/img/place_holder.jpg'>
+            <form class='form-signin' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "' method='post'>
+                <input type='email' name='email' class='form-control' placeholder='Your email' required autofocus>
+                <input type='submit' class='btn btn-lg btn-primary btn-block' value='Send Reset Link' style='margin-top:1em;' />
+            </form>
+        </div>
 	</div>";
 
 echo "</div>";

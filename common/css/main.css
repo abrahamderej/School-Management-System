@@ -1,26 +1,4 @@
 
-.left-margin{
-    margin: 0 .5em 0 0;
-}
-.right-button-margin{
-    margin: 0 0 1em 0;
-    overflow: hidden;
-}
-.modal-body{
-    padding: 20px 20px 0px 20px !important;
-    text-align: center !important;
-}
-
-.modal-footer{
-    text-align: center !important;
-}
-table th{
-    width:auto !important;
-}
-.error{
-    color: #ff0000;
-}
-
 *{
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
@@ -28,136 +6,31 @@ table th{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-body {
+
+
+.margin-bottom-1em{ margin-bottom:1em; }
+.width-30-percent{ width:30%; }
+.margin-1em-zero{ margin:1em 0; }
+.width-30-percent{ width:30%; }
+.width-70-percent{ width:70%; }
+.margin-top-40{ margin-top:60px; }
+.text-align-center{ text-align:center; }
+
+div#blueimp-gallery div.modal{ overflow: visible; }
+
+
+.html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.body{
+    display: flex;
     background-color:  #f3f4f7;
 }
-
-.login {
-    width: 400px;
-    background-color: #ffffff;
-    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    margin: 100px auto;
+.form{
+    margin: auto;
 }
-.login h1 {
-    text-align: center;
-    color: #5b6574;
-    font-size: 24px;
-    padding: 20px 0 20px 0;
-    border-bottom: 1px solid #dee0e4;
-}
-.login form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 20px;
-}
-.login form label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: #3274d6;
-    color: #ffffff;
-}
-.login form input[type="password"], .login form input[type="text"] {
-    width: 310px;
-    height: 50px;
-    border: 1px solid #dee0e4;
-    margin-bottom: 20px;
-    padding: 0 15px;
-}
-.login form input[type="submit"] {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: #3274d6;
-    border: 0;
-    cursor: pointer;
-    font-weight: bold;
-    color: #ffffff;
-    transition: background-color 0.2s;
-}
-.login form input[type="submit"]:hover {
-    background-color: #2868c7;
-    transition: background-color 0.2s;
-}
-
-.navtop {
-    background-color: #2868c7;
-    height: 60px;
-    width: 100%;
-    border: 0;
-}
-.navtop div {
-    display: flex;
-    margin: 0 auto;
-    width: 1000px;
-    height: 100%;
-}
-.navtop div h1, .navtop div a {
-    display: inline-flex;
-    align-items: center;
-}
-.navtop div h1 {
-    flex: 1;
-    font-size: 24px;
-    padding: 0;
-    margin: 0;
-    color: #eaebed;
-    font-weight: normal;
-}
-.navtop div a {
-    padding: 0 20px;
-    text-decoration: none;
-    color: #eaebed;
-    font-weight: bold;
-}
-.navtop div a i {
-    padding: 2px 8px 0 0;
-}
-.navtop div a:hover {
-    color: #eaebed;
-}
-body.loggedin {
-    background-color: #f3f4f7;
-}
-
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #4b9dff;
-    overflow-x: hidden;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #eaebed;
-    display: block;
-}
-
-
-.sidenav a:hover {
-    color: #007bff;
-}
-.main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
-
 
 .content {
     width: 1300px;
@@ -185,26 +58,8 @@ body.loggedin {
     padding-right: 15px;
 }
 .content > div p {
-padding:5px;
-margin:0 0 10px 0;}
-
-
-.footer{
-    background-color: #2868c7;
-    text-align: center;
-    color: #eaebed;
-}
-
-
-.margin-bottom-1em{ margin-bottom:1em; }
-.width-30-percent{ width:30%; }
-.margin-1em-zero{ margin:1em 0; }
-.width-30-percent{ width:30%; }
-.width-70-percent{ width:70%; }
-.margin-top-40{ margin-top:40px; }
-.text-align-center{ text-align:center; }
-
-div#blueimp-gallery div.modal{ overflow: visible; }
+    padding:5px;
+    margin:0 0 10px 0;}
 
 .photo-thumb{
     width:214px;
@@ -248,7 +103,8 @@ div#blueimp-gallery div.modal{ overflow: visible; }
     margin-top: 40px;
     padding: 40px 0px 20px 0px;
     background-color: #ffffff;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    /*box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);*/
+
 }
 
 .login-title{
@@ -293,3 +149,152 @@ div#blueimp-gallery div.modal{ overflow: visible; }
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
+
+.left-margin{
+    margin: 0 .5em 0 0;
+}
+.right-button-margin{
+    margin: 0 0 1em 0;
+    overflow: hidden;
+}
+.modal-body{
+    padding: 20px 20px 0px 20px !important;
+    text-align: center !important;
+}
+
+.modal-footer{
+    text-align: center !important;
+}
+table th{
+    width:auto !important;
+}
+.error{
+    color: #ff0000;
+}
+
+
+.sidenav {
+height: 100%;
+width: 160px;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #4b9dff;
+overflow-x: hidden;
+padding-top: 60px;
+}
+
+.sidenav a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 20px;
+color: #eaebed;
+display: block;
+}
+
+
+.sidenav a:hover {
+color: #007bff;
+}
+.main {
+margin-left: 160px; /* Same as the width of the sidebar */
+padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+.footer{
+    background-color: #2868c7;
+    text-align: center;
+    color: #eaebed;
+}
+
+.login {
+    width: 400px;
+    background-color: #ffffff;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin: 100px auto;
+}
+.login h1 {
+    text-align: center;
+    color: #5b6574;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #dee0e4;
+}
+.login form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+.login form input[type="password"], .login form input[type="text"] {
+    width: 310px;
+    height: 50px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+.login form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #3274d6;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+.login form input[type="submit"]:hover {
+    background-color: #2868c7;
+    transition: background-color 0.2s;
+}
+
+.navtop {
+    background-color: #2686c7;
+    height: 70px;
+    width: 100%;
+    border: 0;
+}
+/*.navtop div {*/
+    /*display: flex;*/
+    /*margin: 0 auto;*/
+    /*width: 1000px;*/
+    /*height: 100%;*/
+/*}*/
+.navtop div h1, .navtop div a {
+    display: inline-flex;
+    align-items: center;
+}
+.navtop div h1 {
+    flex: 1;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    color: #eaebed;
+    font-weight: normal;
+}
+.navtop div a {
+    padding: 0 20px;
+    text-decoration: none;
+    color: #eaebed;
+    font-weight: bold;
+}
+.navtop div a i {
+    padding: 2px 8px 0 0;
+}
+.navtop div a:hover {
+    color: #007bff;
+}
+/*body.loggedin {*/
+    /*background-color: #f3f4f7;*/
+/*}*/
+
+

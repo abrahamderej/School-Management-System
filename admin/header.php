@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="common/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="common/css/main.css">
-    <link href="<?php echo $home_url . "libs/css/admin.css" ?>" rel="stylesheet" />
+    <link href="<?php echo $home_url . "common/css/admin.css" ?>" rel="stylesheet" />
 </head>
 <body >
     <?php

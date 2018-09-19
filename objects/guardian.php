@@ -2,25 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: jordanpc
- * Date: 6/16/2018
- * Time: 9:57 AM
+ * Date: 9/19/2018
+ * Time: 1:59 AM
  */
 
-class staffs
+class guardian
 {
- // database connection
+    // database connection
     private $conn;
-    private $table_name = "staffs";
+    private $table_name = "parents";
 
     // objects properties
-    public $staff_id;
+    public $parent_id;
     public $user_id;
-    public $gender;
-    public $profile_image;
-    public $job_title;
+    public $parent_type;
     public $mobile;
     public $telephone;
-
+    public $work_place;
 
     public function __construct($db)
     {
@@ -28,7 +26,7 @@ class staffs
     }
     // used by select drop down list ---you have get user.user_id == staff.user_id---
     function read(){
-                // select all data
+        // select all data
         $query = "select staff_id, first_name
                 from
                 ". $this ->table_name. "
@@ -80,73 +78,6 @@ class staffs
         $this ->telephone = $row['telephone'];
         $this ->profile_image = $row['profile_image'];
 
-    }
-
-    function uploadPhoto(){
-        $result_message="";
-
-        if($this->profile_image){
-            //sha1_file() function is used to make a unique file name
-            $target_directory = "uploads/";
-            $target_file = $target_directory . $this->profile_image;
-            $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
-
-            //error message is empty
-            $file_upload_error_messages="";
-            // make sure that file is a real img
-            $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
-            if($check !== false){
-                // its img
-
-            }   else{
-                $file_upload_error_messages .=" <div> submitted file is not an img. </div>";
-            }
-
-            // make sure certain file types are allowed
-            $allowed_file_types= array("jpg","jpeg", "png", "gif");
-            if(!in_array($file_type, $allowed_file_types)){
-                $file_upload_error_messages .=" <div> only JPG, JPEG, PNG, GIF files are allowed. </div>";
-            }
-            // make sure file does not exist
-            if(file_exists($target_file)){
-                $file_upload_error_messages .=" <div> Image already exists. try to change file name.</div>";
-            }
-            // make sure submitted file is not too large. can;t be larger than 1MB
-            if($_FILES['profile_image']['size'] > (1024000)){
-                $file_upload_error_messages .=" <div> img size must be less than 1 MB. </div>";
-            }
-
-            // make sure upload folder exists
-            // if not create it
-            if(!is_dir($target_directory)){
-                mkdir($target_directory, 0777, true);
-            }
-            // if $file_upload_error_message is still empty
-            if(empty($file_upload_error_messages)){
-                // it means there are no errors, so try to upload the file
-                if(move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file)){
-                    // it means photo was uploaded
-                }
-                else{
-                    $result_message.= " <div class='alert alert-danger'>";
-                    $result_message.= "<div> Unable to upload photo. </div>";
-                    $result_message.= "<div> Update the record to upload photo. </div>";
-                    $result_message.= " </div>";
-                }
-
-            }
-            // if $file_upload_error_ message is not empty
-            else {
-                // it meas there are some errors, so show them to user
-                $result_message .= " <div class='alert alert-danger'>";
-                $result_message .="<div>{$file_upload_error_messages}</div>";
-                $result_message .="<div> Update the record to upload photo. </div>";
-                $result_message.="</div>";
-            }
-
-
-        }
-        return $result_message;
     }
 
     public function countAll(){
@@ -211,26 +142,26 @@ class staffs
     function create(){
 
         $query = "Insert INTO " .$this->table_name ." 
-                  SET  user_id =:user_id, gender=:gender, profile_image=:profile_image, job_title=:job_title,
-                       mobile=:mobile, telephone=:telephone ";
+                  SET  parent_id=:parent_id, user_id =:user_id, parent_type =:parent_type, 
+                  telephone =:telephone, mobile =:mobile, work_place =:work_place ";
 
         //prepare query for execution ,
         $stmt= $this->conn-> prepare($query);
         // posted values
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
-        $this->gender = htmlspecialchars(strip_tags($this->gender));
-        $this->job_title = htmlspecialchars(strip_tags($this->job_title));
+        $this->parent_type = htmlspecialchars(strip_tags($this->parent_type));
         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
         $this->telephone = htmlspecialchars(strip_tags($this->telephone));
-        $this->profile_image = htmlspecialchars(strip_tags($this->profile_image));
+        $this->work_place = htmlspecialchars(strip_tags($this->work_place));
 
         // bind the parameters
+
+        $stmt -> bindParam(":parent_id", $this->parent_id);
         $stmt -> bindParam(":user_id", $this->user_id);
-        $stmt -> bindParam(":gender", $this->gender);
-        $stmt -> bindParam(":job_title", $this->job_title);
+        $stmt -> bindParam(":parent_type", $this->parent_type);
         $stmt -> bindParam(":mobile", $this->mobile);
         $stmt -> bindParam(":telephone", $this->telephone);
-        $stmt -> bindParam(":profile_image", $this->profile_image);
+        $stmt -> bindParam(":work_place", $this->work_place);
 
         // specify when this record was inserted to the database
         // Execute the query
