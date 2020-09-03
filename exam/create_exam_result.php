@@ -7,15 +7,15 @@
  */
 
     require_once '../config/connection.php';
-    require_once '../objects/exam.php';
-    require_once '../objects/exam_result.php';
+    require_once '../objects/exams.php';
+    require_once '../objects/exam_results.php';
 
     $conn = new Connection();
     $db = $conn->getConnection();
 
     //pass connection to database
-    $exam = new exam($db);
-    $exam_result = new exam_result($db);
+    $exam = new exams($db);
+    $exam_result = new exam_results($db);
 
     $page_title="Exam Result";
 

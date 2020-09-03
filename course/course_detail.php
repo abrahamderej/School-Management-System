@@ -8,21 +8,21 @@
 $course_id = isset($_GET['course_id']) ? $_GET['course_id']: die('Error : missing ID');
 //include database and objects files
 include_once '../config/connection.php';
-include_once '../objects/course.php';
-include_once '../objects/grade.php';
+include_once '../objects/courses.php';
+include_once '../objects/grades.php';
 
 // get database connection
 $connection = new Connection();
 $db = $connection->getConnection();
 
 // pass connection to objects and prepare object
-$course = new course($db);
-$grade = new grade($db);
-// set id of course to be edited
+$course = new courses($db);
+$grade = new grades($db);
+// set id of courses to be edited
 $course->course_id= $course_id;
-// read the details of course
+// read the details of courses
 $course->readOne();
-$page_title = "course detail";
+$page_title = "courses detail";
 include_once "../header.php";
 ?>
     <div class="row">

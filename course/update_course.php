@@ -9,23 +9,23 @@
 $course_id = isset($_GET['course_id']) ? $_GET['course_id']: die('Error : missing ID');
 //include database and objects files
 include_once '../config/connection.php';
-include_once '../objects/course.php';
-include_once '../objects/grade.php';
+include_once '../objects/courses.php';
+include_once '../objects/grades.php';
 
 // get database connection
 $connection = new Connection();
 $db = $connection->getConnection();
 
 // pass connection to objects and prepare object
-$course = new course($db);
-$grade = new grade($db);
+$course = new courses($db);
+$grade = new grades($db);
 
-// set id of staff to be edited
+// set id of staffs to be edited
 $course->course_id= $course_id;
 
-// read the details of staff
+// read the details of staffs
 $course->readOne();
-$page_title = "Update course";
+$page_title = "Update courses";
 include_once "../header.php";
 
 ?>
@@ -38,17 +38,17 @@ include_once "../header.php";
 <?php
 if($_POST){
 
-    // set staff property values
+    // set staffs property values
     $course ->course_name = $_POST['course_name'];
     $course ->credit_hour = $_POST['credit_hour'];
     $course ->grade_id = $_POST['grade_id'];
-    // update the staff
+    // update the staffs
     if($course -> update()){
-        echo "<div class='alert alert-success alert-dismissible'> course Successful updated</div>";
+        echo "<div class='alert alert-success alert-dismissible'> courses Successful updated</div>";
         header('Location: course_list.php');
     }
     else{
-        echo "<div class='alert alert-danger alert-dismissible'> Unable to update course </div>";
+        echo "<div class='alert alert-danger alert-dismissible'> Unable to update courses </div>";
     }
 
 }
@@ -70,7 +70,7 @@ if($_POST){
                     <?php
                     $stmt = $grade->readGrade();
                     echo "<select class='form-control' name='grade_id'>";
-                    echo "<option >Select grade...</option>";
+                    echo "<option >Select grades...</option>";
                     while($row_grade =$stmt->fetch(PDO::FETCH_ASSOC)){
                         $grade_id = $row_grade['grade_id'];
                         $grade_name = $row_grade['grade_name'];

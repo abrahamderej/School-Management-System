@@ -7,15 +7,15 @@
  */
 
 require_once '../config/connection.php';
-require_once '../objects/grade.php';
-require_once '../objects/course.php';
+require_once '../objects/grades.php';
+require_once '../objects/courses.php';
 
 $conn = new Connection();
 $db = $conn->getConnection();
 
 //pass connection to database
-$grade = new grade($db);
-$course = new course($db);
+$grade = new grades($db);
+$course = new courses($db);
 
 $page_title=" Create Course";
 
@@ -35,9 +35,9 @@ require_once '../header.php';
 //    $course_name_err = " Fill required field";
 //}
 //else{
-//    $course->course_name= checkInput($_POST['course_name']);
-//    $course->c = checkInput($_POST['credit_hour']);
-//    $course->grade_id = checkInput($_POST['grade_id']);
+//    $courses->course_name= checkInput($_POST['course_name']);
+//    $courses->c = checkInput($_POST['credit_hour']);
+//    $courses->grade_id = checkInput($_POST['grade_id']);
 //}
     $course_name = $credit_hour = $grade_id= "";
     $course_name_err= $credit_hour_err = $grade_id_err = "";
@@ -62,10 +62,10 @@ require_once '../header.php';
         }
 
         if($course->createCourse()){
-            echo "<span class='alert alert-success'> course created</span>";
+            echo "<span class='alert alert-success'> courses created</span>";
         }
         else{
-            echo "<span class='alert alert-danger'> filed to create course</span>";
+            echo "<span class='alert alert-danger'> filed to create courses</span>";
         }
 }
 
@@ -96,7 +96,7 @@ require_once '../header.php';
                 <?php
                     $stmt = $grade->readGrade();
                     echo "<select class='form-control' name='grade_id' required>";
-                        echo "<option class='error'>Select grade...</option>";
+                        echo "<option class='error'>Select grades...</option>";
                         while($row_grade =$stmt->Fetch(PDO::FETCH_ASSOC)){
                             extract($row_grade);
                             echo "<option value='{$grade_id}'>{$grade_name}</option>";

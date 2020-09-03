@@ -7,9 +7,9 @@
  */
 
 
-class course{
+class courses{
     private $conn;
-    private $table_name = "course";
+    private $table_name = "courses";
 
     public $course_id;
     public $course_name;
@@ -17,7 +17,7 @@ class course{
     public $grade_id;
 
     /**
-     * course constructor.
+     * courses constructor.
      * @param $db
      */
     public function __construct($db)
@@ -44,14 +44,14 @@ class course{
         return $stmt;
     }
     function  readCourseName(){
-        $query =" select first_name from " . $this->table_name . "where  staff_id = ? limit 0,1";
+        $query =" select course_name from " . $this->table_name . " where  course_id = ? limit 0,1";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->staff_id);
         $stmt->execute();
 
         $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-        $this->first_name = $row['first_name'];
+        $this->course_name = $row['course_name'];
     }
     function readAll($from_record_num, $records_per_page){
         $query = "select course_id, course_name,credit_hour, grade_id 

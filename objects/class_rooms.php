@@ -6,10 +6,10 @@
  * Time: 12:32 AM
  */
 
-class class_room
+class class_rooms
 {
     private $conn;
-    private $table_name = "class_room";
+    private $table_name = "class_rooms";
 
     public $class_room_id;
     public $teacher_id;
@@ -19,7 +19,7 @@ class class_room
     public $remarks;
 
     /**
-     * class_room constructor.
+     * class_rooms constructor.
      * @param $db
      */
     public function __construct($db)

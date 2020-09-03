@@ -7,12 +7,12 @@
  */
 
 require_once '../config/connection.php';
-require_once '../objects/grade.php';
+require_once '../objects/grades.php';
 
 $conn = new Connection();
 $db = $conn->getConnection();
 
-$grade = new grade($db);
+$grade = new grades($db);
 
 $page_title=" Create Grade";
 
@@ -24,10 +24,10 @@ if($_POST){
     $grade->description = $_POST['description'];
 
     if($grade->createGrade()){
-        echo "<div class='alert alert-success'> grade created</div>";
+        echo "<div class='alert alert-success'> grades created</div>";
     }
     else{
-        echo "<div class='alert alert-danger'> filed to create grade</div>";
+        echo "<div class='alert alert-danger'> filed to create grades</div>";
     }
 }
 

@@ -6,21 +6,18 @@
  * Time: 9:57 AM
  */
 
-class staff
+class staffs
 {
  // database connection
     private $conn;
-    private $table_name = "staff";
+    private $table_name = "staffs";
 
     // objects properties
     public $staff_id;
-    public $last_name;
-    public $first_name;
-    public $middle_name;
+    public $user_id;
     public $gender;
     public $profile_image;
     public $job_title;
-    public $email;
     public $mobile;
     public $telephone;
 
@@ -29,7 +26,7 @@ class staff
     {
         $this->conn = $db;
     }
-    // used by select drop down list
+    // used by select drop down list ---you have get user.user_id == staff.user_id---
     function read(){
                 // select all data
         $query = "select staff_id, first_name
@@ -54,9 +51,9 @@ class staff
     }
 
     function readAll($from_record_num, $records_per_page){
-        $query = "Select staff_id, last_name, first_name, middle_name, gender, profile_image, job_title, email, mobile, telephone
+        $query = "Select staff_id, user_id, gender, profile_image, job_title, mobile, telephone
         from 
-        " .$this->table_name ." order by last_name ASC 
+        " .$this->table_name ." order by user_id.last_name ASC 
         limit {$from_record_num}, {$records_per_page}";
 
         $stmt = $this->conn->prepare($query);
@@ -65,7 +62,7 @@ class staff
     }
 
     function readOne(){
-        $query = "Select last_name, first_name, middle_name, gender, profile_image, job_title, email, mobile, telephone
+        $query = "Select gender, profile_image, job_title, email, mobile, telephone
         from 
         " .$this->table_name ."
         where staff_id = ? 
@@ -77,12 +74,8 @@ class staff
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->last_name =$row['last_name'];
-        $this ->first_name = $row['first_name'];
-        $this ->middle_name = $row['middle_name'];
         $this ->gender = $row['gender'];
         $this ->job_title = $row['job_title'];
-        $this-> email = $row['email'];
         $this ->mobile = $row['mobile'];
         $this ->telephone = $row['telephone'];
         $this ->profile_image = $row['profile_image'];
@@ -218,30 +211,23 @@ class staff
     function create(){
 
         $query = "Insert INTO " .$this->table_name ." 
-                  SET  last_name=:last_name, first_name=:first_name, 
-                       middle_name=:middle_name, gender=:gender, profile_image=:profile_image, job_title=:job_title,
-                       email=:email, mobile=:mobile, telephone=:telephone ";
+                  SET  user_id, gender=:gender, profile_image=:profile_image, job_title=:job_title,
+                       mobile=:mobile, telephone=:telephone ";
 
         //prepare query for execution ,
         $stmt= $this->conn-> prepare($query);
         // posted values
-        $this->last_name = htmlspecialchars(strip_tags($this->last_name));
-        $this->first_name = htmlspecialchars(strip_tags($this->first_name));
-        $this->middle_name = htmlspecialchars(strip_tags($this->middle_name));
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
         $this->job_title = htmlspecialchars(strip_tags($this->job_title));
-        $this->email = htmlspecialchars(strip_tags($this->email));
         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
         $this->telephone = htmlspecialchars(strip_tags($this->telephone));
         $this->profile_image = htmlspecialchars(strip_tags($this->profile_image));
 
         // bind the parameters
-        $stmt -> bindParam(":last_name", $this->last_name);
-        $stmt -> bindParam(":first_name",$this->first_name);
-        $stmt -> bindParam(":middle_name", $this->middle_name);
+        $stmt -> bindParam(":user_id", $this->user_id);
         $stmt -> bindParam(":gender", $this->gender);
         $stmt -> bindParam(":job_title", $this->job_title);
-        $stmt -> bindParam(":email", $this->email);
         $stmt -> bindParam(":mobile", $this->mobile);
         $stmt -> bindParam(":telephone", $this->telephone);
         $stmt -> bindParam(":profile_image", $this->profile_image);
@@ -258,33 +244,26 @@ class staff
     function update(){
 
         $query = " UPDATE  " .$this->table_name ." 
-                  SET  last_name=:last_name, first_name=:first_name, 
-                       middle_name=:middle_name, gender=:gender, profile_image=:profile_image, job_title=:job_title,
-                       email=:email, mobile=:mobile, telephone=:telephone 
+                  SET  user_id=:user_id, gender=:gender, profile_image=:profile_image, job_title=:job_title,
+                       mobile=:mobile, telephone=:telephone 
                    where 
                         staff_id=:staff_id";
 
         //prepare query for execution ,
         $stmt= $this->conn-> prepare($query);
         // posted values
-        $this->last_name = htmlspecialchars(strip_tags($this->last_name));
-        $this->first_name = htmlspecialchars(strip_tags($this->first_name));
-        $this->middle_name = htmlspecialchars(strip_tags($this->middle_name));
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
         $this->job_title = htmlspecialchars(strip_tags($this->job_title));
-        $this->email = htmlspecialchars(strip_tags($this->email));
         $this->mobile = htmlspecialchars(strip_tags($this->mobile));
         $this->telephone = htmlspecialchars(strip_tags($this->telephone));
         $this->staff_id = htmlspecialchars(strip_tags($this->staff_id));
         $this->profile_image = htmlspecialchars(strip_tags($this->profile_image));
 
         // bind the parameters
-        $stmt -> bindParam(":last_name", $this->last_name);
-        $stmt -> bindParam(":first_name",$this->first_name);
-        $stmt -> bindParam(":middle_name", $this->middle_name);
+        $stmt -> bindParam(":user_id", $this->user_id);
         $stmt -> bindParam(":gender", $this->gender);
         $stmt -> bindParam(":job_title", $this->job_title);
-        $stmt -> bindParam(":email", $this->email);
         $stmt -> bindParam(":mobile", $this->mobile);
         $stmt -> bindParam(":telephone", $this->telephone);
         $stmt -> bindParam(":profile_image", $this->profile_image);

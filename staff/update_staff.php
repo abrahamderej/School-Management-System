@@ -9,18 +9,18 @@
     $staff_id = isset($_GET['staff_id']) ? $_GET['staff_id']: die('Error : missing ID');
     //include database and objects files
     include_once '../config/connection.php';
-    include_once '../objects/staff.php';
+    include_once '../objects/staffs.php';
 
     // get database connection
     $connection = new Connection();
     $db = $connection->getConnection();
 
     // pass connection to objects and prepare object
-    $staff = new Staff($db);
-    // set id of staff to be edited
+    $staff = new staffs($db);
+    // set id of staffs to be edited
     $staff->staff_id= $staff_id;
 
-    // read the details of staff
+    // read the details of staffs
     $staff->readOne();
     $page_title = "Update Staff";
     include_once "../header.php";
@@ -33,7 +33,7 @@
     <?php
     if($_POST){
 
-        // set staff property values
+        // set staffs property values
         $staff ->last_name = $_POST['last_name'];
         $staff ->first_name = $_POST['first_name'];
         $staff ->middle_name = $_POST['middle_name'];
@@ -47,7 +47,7 @@
             basename($_FILES["profile_image"]["name"]): "";
         $staff ->profile_image = $profile_image ;
 
-        // update the staff
+        // update the staffs
         if($staff -> update()){
             echo "<div class='alert alert-success alert-dismissible'> Staff Successful updated</div>";
             echo $staff->uploadPhoto();

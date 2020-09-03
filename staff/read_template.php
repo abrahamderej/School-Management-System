@@ -3,7 +3,7 @@
 echo " <div class='row'>
  <div class='col-md-6'></div>
  <div class='col-md-4'>";
-echo "<form role='search' action='staff/search_staff.php'>
+echo "<form role='search' action='staffs/search_staff.php'>
         <div class='input-group  fa-pull-left '>";
         $search_value=isset($search_term) ? "value='{$search_term}'" : "";
         echo "<input type='text' class='form-control' placeholder='Type last name or first name...' name='s' id='srch-term' required {$search_value} /> 
@@ -15,7 +15,7 @@ echo "<form role='search' action='staff/search_staff.php'>
  </div>";
  echo "<div class='col-md-2'> 
         <div class='right-button-margin'>
-        <a href='staff/create_staff.php' class='btn btn-primary fa-pull-left'>
+        <a href='staffs/create_staff.php' class='btn btn-primary fa-pull-left'>
         <span class='fa fa-plus'></span> Register</a></div>
         </div>
 </div>";

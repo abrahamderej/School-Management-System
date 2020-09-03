@@ -9,13 +9,13 @@
 if($_POST){
     //include database and objects files
     require_once '../config/connection.php';
-    require_once '../objects/staff.php';
+    require_once '../objects/staffs.php';
 
     // get database & objects
     $connection = new Connection();
     $db = $connection->getConnection();
 
-    $staff = new staff($db);
+    $staff = new staffs($db);
     $staff->staff_id = $_POST['object_id'];
 
     if($staff->delete()){

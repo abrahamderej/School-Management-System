@@ -10,23 +10,23 @@
     include_once '../config/core.php';
     //include database and objects files
     include_once '../config/connection.php';
-    include_once '../objects/staff.php';
+    include_once '../objects/staffs.php';
 
     // get database & objects
     $connection = new Connection();
     $db = $connection->getConnection();
 
-    $staff = new staff($db);
+    $staff = new staffs($db);
 
     $page_title = "";
     include_once "../header.php";
 
     $stmt= $staff->readAll($from_record_num, $records_per_page);
     // specify the page where paging is used
-    $page_url = "staff/view_staff.php?";
+    $page_url = "staffs/view_staff.php?";
     $total_rows =$staff->countAll();
 
-    //  it controls how the staff list will be rendered
+    //  it controls how the staffs list will be rendered
     include_once "read_template.php";
 
     include_once "../footer.php";

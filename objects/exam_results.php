@@ -6,17 +6,17 @@
  * Time: 4:24 AM
  */
 
-class exam_result{
+class exam_results{
 
     private $conn;
-    private $table_name = "exam_result";
+    private $table_name = "exam_results";
 
     public $result_id;
     public $exam_id;
     public $exam_value;
 
     /**
-     * exam_result constructor.
+     * exam_results constructor.
      * @param $db
      */
     public function __construct($db)

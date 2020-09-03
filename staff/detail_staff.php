@@ -8,23 +8,23 @@
 $staff_id = isset($_GET['staff_id']) ? $_GET['staff_id']: die('Error : missing ID');
 //include database and objects files
 include_once '../config/connection.php';
-include_once '../objects/staff.php';
+include_once '../objects/staffs.php';
 
 // get database connection
 $connection = new Connection();
 $db = $connection->getConnection();
 
 // pass connection to objects and prepare object
-$staff = new Staff($db);
-// set id of staff to be edited
+$staff = new staffs($db);
+// set id of staffs to be edited
 $staff->staff_id= $staff_id;
-// read the details of staff
+// read the details of staffs
 $staff->readOne();
 $page_title = "Detail about users";
 include_once "../header.php";
 
     echo "<div class='right-button-margin'>
-           <a href='staff/view_staff.php' class='btn btn-primary fa-pull-right'> <span class='fa fa-list'></span> Read Staff</a>
+           <a href='staffs/view_staff.php' class='btn btn-primary fa-pull-right'> <span class='fa fa-list'></span> Read Staff</a>
            </div>";
     ?>
 

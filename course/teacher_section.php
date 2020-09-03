@@ -6,17 +6,17 @@
  * Time: 1:04 AM
  */
 require_once '../config/connection.php';
-require_once '../objects/grade.php';
-require_once '../objects/staff.php';
-require_once '../objects/class_room.php';
+require_once '../objects/grades.php';
+require_once '../objects/staffs.php';
+require_once '../objects/class_rooms.php';
 
 $conn = new Connection();
 $db = $conn->getConnection();
 
 //pass connection to database
-$grade = new grade($db);
-$staff = new staff($db);
-$class_room = new class_room($db);
+$grade = new grades($db);
+$staff = new staffs($db);
+$class_room = new class_rooms($db);
 
 $page_title=" Assign Teacher to Class Room";
 
@@ -31,10 +31,10 @@ if($_POST){
     $class_room->remarks = $_POST['remarks'];
 
     if($class_room->assignTeacher()){
-        echo "<div class='alert alert-success'> course created</div>";
+        echo "<div class='alert alert-success'> courses created</div>";
     }
     else{
-        echo "<div class='alert alert-danger'> filed to create course</div>";
+        echo "<div class='alert alert-danger'> filed to create courses</div>";
     }
 }
 

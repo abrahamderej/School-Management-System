@@ -6,16 +6,16 @@
  * Time: 12:53 AM
  */
 
-class grade{
+class grades{
     private $conn;
-    private $table_name = "grade";
+    private $table_name = "grades";
 
     public $grade_id;
     public $grade_name;
     public $description;
 
     /**
-     * grade constructor.
+     * grades constructor.
      * @param $db
      */
     public function __construct($db)

@@ -7,17 +7,17 @@
  */
 
 require_once '../config/connection.php';
-require_once '../objects/exam.php';
-require_once '../objects/course.php';
+require_once '../objects/exams.php';
+require_once '../objects/courses.php';
 
 $conn = new Connection();
 $db = $conn->getConnection();
 
 //pass connection to database
-$exam = new exam($db);
-$course = new course($db);
+$exam = new exams($db);
+$course = new courses($db);
 
-$page_title="create exam";
+$page_title="create exams";
 
 require_once '../header.php';
 ?>
@@ -29,10 +29,10 @@ if($_POST){
     $exam->exam_description = $_POST['exam_description'];
 
     if($exam->createExam()){
-        echo "<div class='alert alert-success'> course created</div>";
+        echo "<div class='alert alert-success'> courses created</div>";
     }
     else{
-        echo "<div class='alert alert-danger'> filed to create course</div>";
+        echo "<div class='alert alert-danger'> filed to create courses</div>";
     }
 }
 
